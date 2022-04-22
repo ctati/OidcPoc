@@ -1,0 +1,21 @@
+<h1 id="tableLabel">User Info</h1>
+
+<p>This component demonstrates fetching protected data from the server.</p>
+
+<p *ngIf="!userInfo"><em>Loading...</em></p>
+
+<h3 id="userId" *ngIf="userInfo">User {{userInfo?.id}}</h3>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="userInfo">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let claim of userInfo.claims">
+      <td>{{ claim.key }}</td>
+      <td>{{ claim.value }}</td>
+    </tr>
+  </tbody>
+</table>
