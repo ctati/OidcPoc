@@ -1,5 +1,4 @@
 using System.Security.Claims;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +20,7 @@ public class WeatherForecastController : ControllerBase
         _logger = logger;
     }
 
+    [AllowAnonymous]
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
@@ -33,38 +33,26 @@ public class WeatherForecastController : ControllerBase
         .ToArray();
     }
 
-    [Authorize]
+    [Authorize] // TODO: Setup as a global filter
+    [DatabaseAuthorizationFilter(Policy = "ContentsEditor", ClaimsProviderName = "Test")]
     [HttpGet(Name = "GetUserInfo")]
-    [ActionName("GetUserInfo")]
     public UserInfo GetUserInfo()
     {
-        return new UserInfo()
+        var userInfo = new UserInfo();
+        if (User.Identity?.IsAuthenticated ?? false)
         {
-            Id = this.User.GetId(),
-            Claims = this.User.Claims.ToDictionary(claim => claim.Type, claim => claim.Value)
-        };
+            _logger.LogInformation("User is authenticated");
+            userInfo.Id = User.GetId();
+            userInfo.ClaimsList = User.Claims.Select<Claim, KeyValuePair<string, string>>(claim =>
+            {
+                return new KeyValuePair<string, string>(claim.Type, claim.Value);
+            }).ToList();
+        }
+        else
+        {
+            _logger.LogError("User is not authenticated");
+        }
+
+        return userInfo;
     }
-}
-
-public class UserInfo
-{
-  [JsonPropertyName("id")]
-  public string? Id { get; set; }
-
-  [JsonPropertyName("claims")]
-  public Dictionary<string, string>? Claims { get; set; }
-}
-
-public static class UserHelpers
-{
-  public static string? GetId(this ClaimsPrincipal principal)
-  {
-    var userIdClaim = principal.FindFirst(c => c.Type == ClaimTypes.NameIdentifier) ?? principal.FindFirst(c => c.Type == "sub");
-    if (userIdClaim != null && !string.IsNullOrEmpty(userIdClaim.Value))
-    {
-      return userIdClaim.Value;
-    }
-
-    return null;
-  }
 }

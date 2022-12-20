@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\t_cha\\Projects\\oidcpoc\\server\\server.csproj": {}
+    "C:\\Users\\ctati\\source\\repos\\ctati\\OidcPoc\\server\\server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\t_cha\\Projects\\oidcpoc\\server\\server.csproj": {
+    "C:\\Users\\ctati\\source\\repos\\ctati\\OidcPoc\\server\\server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\t_cha\\Projects\\oidcpoc\\server\\server.csproj",
+        "projectUniqueName": "C:\\Users\\ctati\\source\\repos\\ctati\\OidcPoc\\server\\server.csproj",
         "projectName": "server",
-        "projectPath": "C:\\Users\\t_cha\\Projects\\oidcpoc\\server\\server.csproj",
-        "packagesPath": "C:\\Users\\t_cha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\t_cha\\Projects\\oidcpoc\\server\\obj\\",
+        "projectPath": "C:\\Users\\ctati\\source\\repos\\ctati\\OidcPoc\\server\\server.csproj",
+        "packagesPath": "C:\\Users\\ctati\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ctati\\source\\repos\\ctati\\OidcPoc\\server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\t_cha\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ctati\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -53,7 +55,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -65,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
